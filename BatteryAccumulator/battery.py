@@ -1,9 +1,9 @@
 
 
 class battery:
-    capacity_kwh = 0
-    maxcharge_kw = 3
-    maxdischarge_kw = 3
+    capacity_kwh = 3.0
+    maxcharge_kw = 3.0
+    maxdischarge_kw = 3.0
     capacitynow_kwh = 0.0
 
     def __init__(self, current_kwh, initcapacity_kwh):
@@ -24,5 +24,9 @@ class battery:
         return self.capacitynow_kwh / self.capacity_kwh
     
     def batterytick(self, kwdraw, minutes):
+        if kwdraw > maxdischarge_kw:
+            kwdraw = maxdischarge_kw
+        if kwdraw < -maxcharge_kw:
+            kwdraw = maxcharge_kw
         self.capacitynow_kwh += kwdraw/60*minutes
             
